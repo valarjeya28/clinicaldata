@@ -1,31 +1,31 @@
-function buildMetadata(sample) {
+// function buildMetadata(sample) {
 
-  // @TODO: Complete the following function that builds the metadata panel
+//   // @TODO: Complete the following function that builds the metadata panel
 
-  // Use `d3.json` to fetch the metadata for a sample
-    // Use d3 to select the panel with id of `#sample-metadata`
-    var metadataURL = "/metadata/" + sample;
-    var panelMetadata =d3.select("#sample-metadata");
-     panelMetadata.html("");
-    // Use `.html("") to clear any existing metadata
+//   // Use `d3.json` to fetch the metadata for a sample
+//     // Use d3 to select the panel with id of `#sample-metadata`
+//     var metadataURL = "/metadata/" + sample;
+//     var panelMetadata =d3.select("#sample-metadata");
+//      panelMetadata.html("");
+//     // Use `.html("") to clear any existing metadata
 
-    // Use `Object.entries` to add each key and value pair to the panel
-    d3.json(metadataURL).then(function (data){
-      console.log(data);
-      Object.entries(data).forEach(([key,value])=>
-      {
-        panelMetadata.append("h6").text(`${key}: ${value}`
-        );
-      });
+//     // Use `Object.entries` to add each key and value pair to the panel
+//     d3.json(metadataURL).then(function (data){
+//       console.log(data);
+//       Object.entries(data).forEach(([key,value])=>
+//       {
+//         panelMetadata.append("h6").text(`${key}: ${value}`
+//         );
+//       });
       
     
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
+//     // Hint: Inside the loop, you will need to use d3 to append new
+//     // tags for each key-value in the metadata.
 
-    // BONUS: Build the Gauge Chart
-    // buildGauge(data.WFREQ);
-});
-}
+//     // BONUS: Build the Gauge Chart
+//     // buildGauge(data.WFREQ);
+// });
+// }
 
 function buildCharts(sample) {
 
@@ -39,12 +39,12 @@ function buildCharts(sample) {
     //console.log(chartsURL);
     
     var trace1 = {
-      x: data.otu_ids,
+      x: data.product,
       y: data.sample_values,
       mode: 'markers',
-      text: data.otu_labels,
+      text: data.regions,
       marker: {
-        color: data.otu_ids,
+        color: data.regions,
         size: data.sample_values,
     
         colorscale: "Earth"
@@ -62,9 +62,9 @@ function buildCharts(sample) {
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
     var data2 = [{
-      "values": data.sample_values.slice(0, 10),
-      "labels": data.otu_ids.slice(0, 10),
-      "hovertext": data.otu_labels.slice(0, 10),
+      "values": data.product.slice(0, 10),
+      "labels": data.product.slice(0, 10),
+      "hovertext": data.product.slice(0, 10),
       "type": 'pie',
     }];
     var layout = {
@@ -96,7 +96,7 @@ function init() {
     const firstSample = sampleNames[0];
     console.log(firstSample);
     buildCharts(firstSample);
-    buildMetadata(firstSample);
+    // buildMetadata(firstSample);
   });
 }
 
@@ -104,7 +104,7 @@ function optionChanged(newSample) {
   console.log(newSample);
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
-  buildMetadata(newSample);
+  // buildMetadata(newSample);
 }
 
 // Initialize the dashboard
