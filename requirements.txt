@@ -5,12 +5,10 @@ Flask-SQLAlchemy==2.3.2
 itsdangerous==0.24
 Jinja2==2.10
 numpy==1.14.5
-pandas
-python-dateutil==3.7.0
+pandas==0.23.3
+python-dateutil==2.7.3
 pytz==2018.5
 six==1.11.0
 SQLAlchemy==1.2.10
 Werkzeug==0.14.1
 gunicorn==19.7.1
-distribute==0.6.28
-setuptools==1.0
