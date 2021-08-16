@@ -13,3 +13,5 @@ six==1.11.0
 SQLAlchemy==1.2.10
 Werkzeug==0.14.1
 gunicorn==19.7.1
+distribute==0.6.28
+setuptools==1.0
